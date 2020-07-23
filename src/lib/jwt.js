@@ -1,16 +1,13 @@
 
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET}=process.env
+const { JWT_SECRET } = process.env
 
-function singn(payload = {}){
-    return jwt.singn(payload, JWT_SECRET, {expiresIn: '2d'})
-}
-function verify(token){
-    jwt.verify(token,JWT_SECRET)
-}
+const sign = (payload = {}) => jwt.sign(payload, JWT_SECRET, { expiresIn: '2d' })
 
-module.exports ={
+const verify = token => jwt.verify(token, JWT_SECRET)
+
+module.exports = {
     ...jwt,
-    singn,
+    sign,
     verify
 }
