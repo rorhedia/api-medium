@@ -26,7 +26,7 @@ router.get ('/', async (request, response) => {
 
 })
 
-router.post('/',auth, async (request,response) => {
+router.post('/', async (request,response) => {
     try {
         const newUserData = request.body
         const newUser = await users.createUser(newUserData)

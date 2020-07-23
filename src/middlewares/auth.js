@@ -17,6 +17,7 @@ async function  auth(req, res, next){
             error: error.message
         })
     }
+
 }
 
 module.export=auth
