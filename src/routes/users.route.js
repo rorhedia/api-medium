@@ -4,6 +4,7 @@ const express = require ('express')
 const router = express.Router ( )
 
 const users = require ('../usecases/users.usecase')
+const auth = require ('../middlewares/auth')
 
 router.get ('/', async (request, response) => {
     try {
@@ -25,7 +26,7 @@ router.get ('/', async (request, response) => {
 
 })
 
-router.post('/', async (request,response) => {
+router.post('/',auth, async (request,response) => {
     try {
         const newUserData = request.body
         const newUser = await users.createUser(newUserData)
