@@ -7,39 +7,37 @@
  * section
  */
 
- const mongoose = require('mongoose')
- const entriesSchemas = new mongoose.Schemas({
+const mongoose       = require('mongoose')
+const entriesSchemas = new mongoose.Schema({
+    title: {
+        type     : String,
+        required  : true,
+        maxlength: 50,
+        minlength: 2
+    },
+    author: {
+        type     : String,
+        required  : true,
+        maxlength: 20,
+        minlength: 10
 
-        title: {
-            type: String,
-            require: true,
-            maxlength:50,
-            minlength:2
-        },
-        author: {
-            type: String,
-            require: true,
-            maxlength:10,
-            minlength:20
+    },
+    date: {
+        type   : Date,
+        default: Date.now
+    },
+    content: {
+        type   : String,
+        required: true
+    },
+    urlimg: {
+        type   : String,
+        required: true
+    },
+    section: {
+        type   : String,
+        required: true
+    }
+})
 
-        },
-        date: {
-            type: Date,
-            default: Date.now
-        },
-        content: {
-            type: String,
-            require: true
-        },
-        urlimg:{
-            type: String,
-            require:true
-        },
-        section:{
-            type: String,
-            require:false
-        }
-
- })
-
- module.exports = mongoose.model('entries',entriesSchemas)
+module.exports = mongoose.model('entries', entriesSchemas)
