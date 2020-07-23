@@ -1,0 +1,39 @@
+{
+  "name": "api-medium",
+  "version": "1.0.0",
+  "description": "API medium",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rorhedia/api-medium.git"
+  },
+  "keywords": [
+    "API",
+    "medium",
+    "node",
+    "expres",
+    "mongo",
+    "mongoose"
+  ],
+  "author": "@Nitzeli @codigoVis @rorhedia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rorhedia/api-medium/issues"
+  },
+  "homepage": "https://github.com/rorhedia/api-medium#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
