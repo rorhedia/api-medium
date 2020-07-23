@@ -9,13 +9,13 @@ const mongoose = require ('mongoose')
 const usersSchemas = new mongoose.Schema({
     name:{
         type: String,
-        require: true,
+        required: true,
         maxlength: 20,
         minlength:10
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         match: /^.+@.+\..+$/ 
     },password:{
         type: String,
