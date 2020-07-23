@@ -1,12 +1,15 @@
 
 
 const express = require('express')
+const cors = require ('cors')
 const app = express()
 const entriesRouter = require('./routes/entries.route')
 const usersRouter = require ('./routes/users.route')
 
 // middlewares
+app.use(cors())
 app.use(express.json())
+
 
 // montar routers
 app.use('/entries', entriesRouter)
