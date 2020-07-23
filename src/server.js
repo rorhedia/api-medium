@@ -3,8 +3,9 @@
 const express = require('express')
 const app = express()
 const entriesRouter = require('./routes/entries.route')
-// middlewares
 
+// middlewares
+app.use(express.json())
 
 // montar routers
 app.use('/entries', entriesRouter)

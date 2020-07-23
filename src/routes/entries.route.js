@@ -17,4 +17,20 @@ router.get('/', async (request, response) => {
     }
 })
 
+router.post('/', async (request, response) => {
+    try {
+        const dataPosts = await entries.createPost(request.body)
+        response.json({
+            success: true,
+            data: dataPosts
+        })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            error: error.message
+        })
+    }
+})
+
 module.exports = router

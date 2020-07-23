@@ -8,19 +8,18 @@
  */
 
 const mongoose       = require('mongoose')
-const entriesSchemas = new mongoose.Schemas({
-
+const entriesSchemas = new mongoose.Schema({
     title: {
         type     : String,
-        require  : true,
+        required  : true,
         maxlength: 50,
         minlength: 2
     },
     author: {
         type     : String,
-        require  : true,
-        maxlength: 10,
-        minlength: 20
+        required  : true,
+        maxlength: 20,
+        minlength: 10
 
     },
     date: {
@@ -29,17 +28,16 @@ const entriesSchemas = new mongoose.Schemas({
     },
     content: {
         type   : String,
-        require: true
+        required: true
     },
     urlimg: {
         type   : String,
-        require: true
+        required: true
     },
     section: {
         type   : String,
-        require: false
+        required: true
     }
-
 })
 
 module.exports = mongoose.model('entries', entriesSchemas)
