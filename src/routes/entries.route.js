@@ -32,5 +32,48 @@ router.post('/', async (request, response) => {
         })
     }
 })
+router.delete('/:id', async (req,res) => {
+    try {
+         const idEntries = req.params.id 
+         const deleteEntries =  await entries.findByIdAndDelete(idEntries)
+
+         res.json({
+             success: true,
+             data: {
+                 deleteEntries
+             }
+         })
+    } catch (error) {
+         res.status(400),
+         res.json({
+             success: false,
+             error: error.message
+         })
+    }
+})
+
+router.patch('/:id',async(req, res) => {
+
+     try {
+        const idEntries = req.params.id
+        const  bodyEntries = req.body
+    
+        const idUpDateEntries = await entries.findByIdAndUpdate(idEntries, bodyEntries)
+        res.json({
+            success: true,
+            data:{
+                idUpDateEntries
+            }
+        }) 
+     } catch (error) {
+         res.status(400)
+         resp.json({
+             success:false,
+             error: error.message
+         })
+         
+     }
+
+})
 
 module.exports = router
