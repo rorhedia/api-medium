@@ -1,10 +1,17 @@
 
 const Users = require ('../models/users.model')
 
-function getAll ( ){
-    return Users.find ()
-}
+const getAll = () => Users.find()
+
+const createUser = userData => Users.create(userData)
+
+const update = (idUser, userToUpdate) => Users.findByIdAndUpdate(idUser, userToUpdate)
+
+const deleteUser = idUser => Users.findByIdAndRemove(idUser)
 
 module.exports = {
-    getAll
+    getAll,
+    createUser,
+    update,
+    deleteUser
 }
