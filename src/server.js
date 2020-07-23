@@ -1,5 +1,4 @@
 
-
 const express       = require('express')
 const app           = express()
 const entriesRouter = require('./routes/entries.route')
@@ -19,9 +18,9 @@ app.use('/auth', authRouter)
 
 // test
 app.get('/', (request, response) => {
-    response.json({
-        success: true
-    })
+	response.json({
+		success: true
+	})
 })
 
 module.exports = app
