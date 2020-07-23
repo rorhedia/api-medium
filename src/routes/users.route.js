@@ -1,78 +1,94 @@
 
-const express = require ('express')
+const express = require('express')
+const router = express.Router()
+const users = require('../usecases/users.usecase')
+const auth = require('../middlewares/auth')
 
-const router = express.Router ( )
-
-const users = require ('../usecases/users.usecase')
-const auth = require ('../middlewares/auth')
-
-router.get ('/', async (request, response) => {
+router.get('/', async (request, response) => {
     try {
-        const allUsers = await users.getAll ()
+        const allUsers = await users.getAll()
 
-        response.json ({
+        response.json({
             success: true,
-            data:{
+            data: {
                 courses: allUsers
             }
         })
     } catch (error) {
-        response.status (error.status || 400)
-        response.json ({
-            success:false,
+        response.status(error.status || 400)
+        response.json({
+            success: false,
             error: error.message
         })
     }
-
 })
 
-router.post('/', async (request,response) => {
+router.get('/:id', async (request, response) => {
+    try {
+        const allUsers = await users.getById(request.params.id)
+
+        response.json({
+            success: true,
+            data: {
+                courses: allUsers
+            }
+        })
+    } catch (error) {
+        response.status(error.status || 400)
+        response.json({
+            success: false,
+            error: error.message
+        })
+    }
+})
+
+router.post('/', auth, async (request, response) => {
     try {
         const newUserData = request.body
         const newUser = await users.createUser(newUserData)
 
-        response.json ({
+        response.json({
             success: true,
             data: {
                 newUser
             }
         })
     } catch (error) {
-        response.status (error.status || 400)
+        response.status(error.status || 400)
         response.json({
-            success:false,
+            success: false,
             error: error.message
         })
     }
 })
 
-router.patch('/:id' , async (request, response) =>{
+router.patch('/:id', auth, async (request, response) => {
     try {
-      const id = request.params.id
-      const userToUpdate = request.body
-      const userUpdated = await users.update(id,userToUpdate)
-      response.json({
-          success: true,
-          data: {
-            userUpdated
-          }
-      })
+        const id = request.params.id
+        const userToUpdate = request.body
+        const userUpdated = await users.update(id, userToUpdate)
+        response.json({
+            success: true,
+            data: {
+                userUpdated
+            }
+        })
     } catch (error) {
-      response.status(error.status || 400)
-      response.json({
-          success: false,
-          error: error.message
-      })
+        response.status(error.status || 400)
+        response.json({
+            success: false,
+            error: error.message
+        })
     }
-  })
-  
-  router.delete('/:id',async (request,response)=>{
+})
+
+router.delete('/:id', auth, async (request, response) => {
     try {
         const id = request.params.id
         const userDeleted = await users.deleteUser(id)
         response.json({
             success: true,
-            data:{
+            data: {
                 userDeleted
             }
         })

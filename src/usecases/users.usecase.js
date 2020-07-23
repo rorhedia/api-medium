@@ -1,9 +1,11 @@
 
 const Users  = require('../models/users.model')
 const bcrypt = require('../lib/bcrypt')
-// const jwt    = require('../lib/jwt')
+const jwt    = require('../lib/jwt')
 
 const getAll = () => Users.find()
+
+const getById = async (id) => await Users.findById(id).exec()
 
 const createUser = userData => Users.create(userData)
 
@@ -30,8 +32,8 @@ const signup = async userData => {
 const login = async (email, password) => {
 
     const userByEmail = await Users.findOne({ email })
-    console.log(userByEmail);
-    if (!userExist) throw new Error('Usuario o contraseña inválidos')
+
+    if (!userByEmail) throw new Error('Usuario o contraseña inválidos')
 
     const passwdIsValid = await bcrypt.compare(password, userByEmail.password)
 
@@ -46,5 +48,6 @@ module.exports = {
     update,
     deleteUser,
     signup,
-    login
+    login,
+    getById
 }
