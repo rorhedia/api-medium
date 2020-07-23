@@ -1,7 +1,7 @@
 
-const Users = require('../models/users.model')
+const Users  = require('../models/users.model')
 const bcrypt = require('../lib/bcrypt')
-const jwt = require('../lib/jwt')
+// const jwt    = require('../lib/jwt')
 
 const getAll = () => Users.find()
 
@@ -22,7 +22,7 @@ const signup = async userData => {
     const paswdEncripted = await bcrypt.hash(password)
 
     return Users.create({
-        ...userExist,
+        ...userData,
         password: paswdEncripted
     })
 }
@@ -30,14 +30,14 @@ const signup = async userData => {
 const login = async (email, password) => {
 
     const userByEmail = await Users.findOne({ email })
-
+    console.log(userByEmail);
     if (!userExist) throw new Error('Usuario o contraseña inválidos')
 
     const passwdIsValid = await bcrypt.compare(password, userByEmail.password)
 
     if (!passwdIsValid) throw new Error('Usuario o contraseña inválidos')
 
-    return jwt.sign({ id: koderByEmail._id })
+    return jwt.sign({ id: userByEmail._id })
 }
 
 module.exports = {
