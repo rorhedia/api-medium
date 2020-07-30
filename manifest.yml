@@ -1,4 +1,0 @@
-applications:
-- name: api-midium
-  random-route: true
-  memory: 32M
